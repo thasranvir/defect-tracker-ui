@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script src="js/script.js"></script>
+<script src="js/controller/modalDemoController.js"></script>
+<script src="js/service/httpService.js"></script>
+<style>
+.paddingclass{
+padding-left:10%;
+padding-right:10%;
+}
+.label-width{
+	width:15%;
+}
+</style>
+</head>
+<div class="container-fluid paddingclass">
+<div class="table-responsive " ng-controller="DefectController">
+      <table id="defect_table" class="table table-striped table-bordered ">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Defect Id</th>
+            <th>Description</th>
+            <th>Date Raised</th>
+            <th>Date Delivered</th>
+            <th>Priority</th>
+            <th>Cognizant Comments</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>ETA</th>
+            <th>Category</th>
+            <th>Attachments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="defect in defects">
+          	<td></td>
+            <th >{{defect.id}}</th>
+            <td>{{defect.description}}</td>
+            <td>{{defect.date_raised}}</td>
+            <td>{{defect.date_delivered}}</td>
+            <td>{{defect.priority}}</td>
+            <td>{{defect.comments}}</td>
+            <td>{{defect.status}}</td>
+            <td>{{defect.assigned_to}}</td>
+            <td>{{defect.ETA}}</td>
+            <td>{{defect.category}}</td>
+            <td>{{defect.attachments}}</td>
+            <td> <a href="#" ng-click="edit(defect)">Edit</a></td>
+            
+        
+          </tr>
+     
+     
+        </tbody>
+      </table>
+    </div><!-- /.table-responsive -->
+	<div ng-controller="ModalDemoCtrl" id="mod">
+<div ng-include="modalTemplate.html"></div>
+	<input type="button" value="Add a new row" id="form_modal" ng-click="open('lg')" class="btn btn-primary" data-toggle="modal" />
+	</div>
+	</div>
+	<!-- Modal -->
+
+<!-- <div ng-controller="ContactController">
+    <form class="well">
+        <label>Name</label>
+        <input type="text" name="name" ng-model="newcontact.name" />
+        <label>Email</label>
+        <input type="text" name="email" ng-model="newcontact.email" />
+        <label>Phone</label>
+        <input type="text" name="phone" ng-model="newcontact.phone" />
+        <br/>
+        <input type="hidden" ng-model="newcontact.id" />
+        <input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />
+    </form>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="contact in contacts">
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
+                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+</html>
