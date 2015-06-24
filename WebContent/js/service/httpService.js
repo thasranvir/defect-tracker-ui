@@ -1,7 +1,72 @@
-angular.module('app').service('httpService', function ($http,$scope) {
+angular.module('app').factory('dataService', function () {
 
-
-    this.save = function (defect) {
+var defects = [
+                    	  {
+                    			id:"1",
+            			description: "desc1",
+            			date_raised: "02/02/2015",
+            	        date_delivered : "28/05/2015",
+            	        priority:"high",
+            	        comments:"Urgent!!",
+            	        status:"Not started",
+            	        assigned_to :"romit",
+            	        ETA: "08/09/2015",
+            	        category:"defect",
+            	        attachments:""	
+            		},
+            		{ 
+            			id:"2",
+            			description: "desc1",
+            			date_raised: "02/02/2015",
+            	        date_delivered : "28/05/2015",
+            	        priority:"high",
+            	        comments:"Urgent!!",
+            	        status:"Not started",
+            	        assigned_to :"romit",
+            	        ETA: "08/09/2015",
+            	        category:"defect",
+            	        attachments:""	
+            			
+            		},
+            		{
+            			id:"3",
+            			description: "desc1",
+            			date_raised: "02/02/2015",
+            	        date_delivered : "28/05/2015",
+            	        priority:"high",
+            	        comments:"Urgent!!",
+            	        status:"Not started",
+            	        assigned_to :"romit",
+            	        ETA: "08/09/2015",
+            	        category:"defect",
+            	        attachments:""	
+            			
+            		},
+            		{
+            			id:"4",
+            			description: "desc1",
+            			date_raised: "02/02/2015",
+            	        date_delivered : "28/05/2015",
+            	        priority:"high",
+            	        comments:"Urgent!!",
+            	        status:"Not started",
+            	        assigned_to :"romit",
+            	        ETA: "08/09/2015",
+            	        category:"defect",
+            	        attachments:""		
+            			
+            		}
+	                 ];
+		
+		return {
+		    getData: function () {
+		        return defects;
+		    },
+		    setData: function (defect) {
+		    	defects.push(defect);
+		    }
+		}
+    /*this.save = function (defect) {
     	$http.post('/someUrl', defect).
     	  success(function(data, status, headers, config) {
     	    // this callback will be called asynchronously
@@ -12,31 +77,7 @@ angular.module('app').service('httpService', function ($http,$scope) {
     	    // called asynchronously if an error occurs
     	    // or server returns response with an error status.
     	  });
-    }
-    
-/*    //simply search contacts list for given id
-    //and returns the contact object if found
-    this.get = function (id) {
-        for (i in contacts) {
-            if (contacts[i].id == id) {
-                return contacts[i];
-            }
-        }
-
-    }
-    
-    //iterate through contacts list and delete 
-    //contact if found
-    this.delete = function (id) {
-        for (i in contacts) {
-            if (contacts[i].id == id) {
-                contacts.splice(i, 1);
-            }
-        }
-    }
-
-    //simply returns the contacts list
-    this.list = function () {
-        return contacts;
     }*/
+    
+   
 });

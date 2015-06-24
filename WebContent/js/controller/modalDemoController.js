@@ -1,4 +1,4 @@
-angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log,$rootScope) {
+angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log,$rootScope,$filter) {
 
  // $scope.items = ['item1', 'item2', 'item3'];
 
@@ -6,16 +6,16 @@ angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log
   
  
 
-  $scope.open = function (size) {
-
+  $scope.open = function (size,data) {
+   
     var modalInstance = $modal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'html/modalTemplate.html',
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
-        items: function () {
-          return $scope.items;
+        data: function () {
+          return data;
         }
       }
     });
@@ -33,31 +33,20 @@ angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log
     $scope.animationsEnabled = !$scope.animationsEnabled;
   };
 
-  $scope.populate = function(defect,ref){
-  	  alert("Hi  " + defect.description);  	
-  	  $scope.items = defect;
-  	  //alert(ref.items)
-  	 // angular.element(document.getElementById("description")).value = defect.description;
-  	 //ref.defect.description = defect.description;
-    };
+
 });
 
-angular.module('app').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items,$rootScope) {
-
-	 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items
-  };
-  //console.log("defect--------"+$scope.items);
-  $scope.submit = function () {
-    console.log($scope.defect);
- 
-    $rootScope.defects.push($scope.defect);
+angular.module('app').controller('ModalInstanceCtrl', function ($scope, $modalInstance,dataService,data) {
+	$scope.defect={};
+	
+  $scope.defect = data;
+  
+  $scope.submit = function () { 
+	dataService.setData($scope.defect);
     $modalInstance.dismiss('cancel');
   };
- //console.log("fghjkl;"+$scope.defect.description);
-  $scope.cancel = function () {
+  
+   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
 });
