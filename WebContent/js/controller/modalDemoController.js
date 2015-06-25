@@ -1,13 +1,10 @@
-angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log,$rootScope,$filter) {
-
- // $scope.items = ['item1', 'item2', 'item3'];
+angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
   $scope.animationsEnabled = true;
   
  
 
   $scope.open = function (size,data) {
-   
     var modalInstance = $modal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'html/modalTemplate.html',
@@ -37,12 +34,12 @@ angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log
 });
 
 angular.module('app').controller('ModalInstanceCtrl', function ($scope, $modalInstance,dataService,data) {
-	$scope.defect={};
-	
+  $scope.defect={};
+	console.log($scope.defect);
   $scope.defect = data;
   
-  $scope.submit = function () { 
-	dataService.setData($scope.defect);
+  $scope.submit = function (defectObject) { 
+	dataService.setData(defectObject);
     $modalInstance.dismiss('cancel');
   };
   
