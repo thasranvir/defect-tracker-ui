@@ -35,15 +35,62 @@ angular.module('app').controller('ModalDemoCtrl', function ($scope, $modal, $log
 
 angular.module('app').controller('ModalInstanceCtrl', function ($scope, $modalInstance,dataService,data) {
   $scope.defect={};
-	console.log($scope.defect);
+ 
+  
+  $scope.defect_id = false;
+	console.log("defect category---"+$scope.defect.category);
   $scope.defect = data;
+
+  if($scope.defect){
+	  $scope.defect.dateRaised= dateFormatMillToDate($scope.defect.dateRaised);
+	  $scope.defect.dateDelivered= dateFormatMillToDate($scope.defect.dateDelivered);
+	  $scope.defect.eta = dateFormatMillToDate($scope.defect.eta);
+  }
+
+  function dateFormatMillToDate(date){
+	  var d = new Date(date);
+	  return d.getMonth()+"/"+d.getDay()+"/"+d.getFullYear();
+  }
   
   $scope.submit = function (defectObject) { 
-	dataService.setData(defectObject);
-    $modalInstance.dismiss('cancel');
+	 /* if(typeof defectObject === 'undefined'){
+		  alert("All fields are mandatory : defectObject");
+	  }
+	  else{
+		  if(typeof defectObject.description  === 'undefined' || typeof defectObject.dateRaised === 'undefined' || typeof defectObject.dateDelivered === 'undefined' || typeof defectObject.priority === 'undefined' || typeof defectObject.comments === 'undefined' || typeof defectObject.status === 'undefined' || typeof defectObject.assignedTo === 'undefined' || typeof defectObject.eta === 'undefined' || typeof defectObject.category === 'undefined'){
+		  alert("All fields are mandatory");
+	  }
+	  }*/
+	 if(typeof defectObject.id == 'undefined'){
+		 dataService.addData(defectObject).then(onSuccess, onError);
+		    var onError = function(status){
+				console.log('An error has occured with status : '+status);
+			};
+			var onSuccess = function(data,status){
+				console.log(status);
+				 $modalInstance.dismiss('cancel');
+						
+			}
+			location.reload(true);
+	 }
+	else
+	 {
+		 dataService.updateData(defectObject).then(onSuccess, onError);
+		    $modalInstance.dismiss('cancel');
+		    var onError = function(status){
+				console.log('An error has occured with status : '+status);
+			};
+			var onSuccess = function(data,status){
+				console.log(status);
+				 $modalInstance.dismiss('cancel');
+			}
+	 
+};
+
   };
   
    $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+  			
 });

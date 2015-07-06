@@ -1,85 +1,125 @@
-	<div ng-controller="ModalDemoCtrl">
-        <div class="modal-header">
-				<h3 class="modal-title">Form Details</h3>
-		</div>
-		<div class="modal-body">{{defect.description}}
-				<form name="form" class="css-form" id="form" novalidate>
-					<div class="form-group">
-					<label for="inputDesc" class="col-sm-2 control-label label-width">Description</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="description" placeholder="Description" ng-model="defect.description"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputDateRaised" class="col-sm-2 control-label label-width">Date Raised</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="date_raised" placeholder="DD/MM/YYYY" ng-model="defect.date_raised"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputDateDelivered" class="col-sm-2 control-label label-width">Date Delivered</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="date_delivered" placeholder="DD/MM/YYYY" ng-model="defect.date_delivered"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputPriority" class="col-sm-2 control-label label-width">Priority</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="priority" placeholder="Enter priority" ng-model="defect.priority"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputComments" class="col-sm-2 control-label label-width">Comments</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="cognizant_comments" placeholder="Enter Comments" ng-model="defect.comments"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputStatus" class="col-sm-2 control-label label-width">Status</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="status" placeholder="Enter Defect Status" ng-model="defect.status"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputAssignedTo" class="col-sm-2 control-label label-width">Assigned To</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="assigned_to" placeholder="Enter Assigned To" ng-model="defect.assigned_to"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputETA" class="col-sm-2 control-label label-width">ETA</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="ETA" placeholder="DD/MM/YYYY" ng-model="defect.ETA"/>
-					</div>
-					</div>
-					
-					<div class="form-group">
-					<label for="inputCategory" class="col-sm-2 control-label label-width">Category</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="category" placeholder="Enter category" ng-model="defect.category"/>
-					</div>
-					</div>
-					
-						<div class="form-group">
-					<label for="inputAttach" class="col-sm-2 control-label label-width">Attachment</label>
-					<div class="col-sm-10">
-					<input type="file" class="form-control" id="attachment" placeholder="Select File" ng-model="defect.attachment"/>
-					</div>
-					</div>
-				
-					
-				</form>	
+
+<div ng-controller="ModalDemoCtrl">
+	<div class="modal-header"
+		style="border-bottom: 0px; padding: 15px 0px 0px 30px;">
+		<h3 class="modal-title">Form Details</h3>
+		<span style="color: red; font-size: 12px;">* All fields are	mandatory</span>
+	</div>
+	<div class="modal-body">
+		<form name="form" class="css-form" id="form">
+			<div ng-show="defect_id">{{defect.id}}</div>
+			<div class="form-group">
+				<label for="inputDesc" class="col-sm-2 control-label label-width">Description</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="description"
+						placeholder="Description" ng-model="defect.description" required />
 				</div>
-				<div class="clearfix"></div>
-	 	<div class="modal-footer">
-					<button class="btn btn-primary" ng-click="submit(defect)">Submit</button>
-					<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-				</div> 		
-    </div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputDateRaised"
+					class="col-sm-2 control-label label-width">Date Raised</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control" id="date_raised"
+						placeholder="MM/DD/YYYY" required ng-model="defect.dateRaised" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputDateDelivered"
+					class="col-sm-2 control-label label-width">Date Delivered</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control" id="date_delivered"
+						placeholder="MM/DD/YYYY" required ng-model="defect.dateDelivered " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputPriority"
+					class="col-sm-2 control-label label-width">Priority</label>
+				<div class="col-sm-10">
+					<select class="form-control">
+					  <option>High</option>
+					  <option>Medium</option>
+					   <option>Low</option>
+					</select>
+					<!-- <input type="text" class="form-control" id="priority"
+						placeholder="Enter priority" required ng-model="defect.priority" /> -->
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputComments"
+					class="col-sm-2 control-label label-width">Comments</label>
+				<div class="input-group col-sm-10">
+				<textarea class="form-control" rows="3"></textarea>
+				<!-- 	<textarea class="form-control custom-control" rows="3"
+						style="resize: none required" ng-model="defect.comments"></textarea> -->
+				
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputStatus" class="col-sm-2 control-label label-width">Status</label>
+				<div class="col-sm-10">
+				<select class="form-control">
+				  <option>Not Started</option>
+				  <option>Open</option>
+				  <option>In Progress</option>
+				  <option>Completed</option>
+				  <option>Closed</option>
+				  <option>Deferred</option>
+				</select>
+					<!-- <input type="text" class="form-control" id="status"
+						placeholder="Enter Defect Status" required
+						ng-model="defect.status" /> -->
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputAssignedTo"
+					class="col-sm-2 control-label label-width">Assigned To</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="assigned_to"
+						placeholder="Enter Assigned To" required
+						ng-model="defect.assignedTo" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputETA" class="col-sm-2 control-label label-width">ETA</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control" id="ETA"
+						placeholder="MM/DD/YYYY" required ng-model="defect.eta" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputCategory"
+					class="col-sm-2 control-label label-width">Category</label>
+				<div class="col-sm-10">
+					 <select ng-model="defect.category" >
+					  <option value="Change request">Change request</option>
+					  <option value="Defect">Defect</option>
+					</select>
+					 <!-- <select class="form-control">
+					  <option>Change request</option>
+					  <option>Defect</option>
+					</select> -->
+					<!-- <input type="text" class="form-control" id="category"
+						placeholder="Enter category" required ng-model="defect.category" /> -->
+				</div>
+			</div>
+			<div class="modal-footer" style="border-top: 0px;">
+				<button class="btn btn-primary" type="submit"
+					ng-click="submit(defect)" ng-disabled="form.$invalid"
+					style="margin-top: 15px;">Submit</button>
+				<button class="btn btn-warning" ng-click="cancel()"
+					style="margin-top: 15px; margin-right: 15px;">Cancel</button>
+			</div>
+
+		</form>
+	</div>
+	<div class="clearfix"></div>
+
+</div>
